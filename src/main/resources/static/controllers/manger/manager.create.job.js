@@ -26,7 +26,7 @@ foundITApp.controller('CreateJobCtrl', ['$scope', 'authService', 'managerService
             console.log('CreateJobCtrl::submit!', $scope.data.form);
             $scope.data.form.reviewers.push($scope.data.reviewerList[$scope.data.r1_idx]);
             $scope.data.form.reviewers.push($scope.data.reviewerList[$scope.data.r2_idx]);
-            console.log('job to create', JSON.stringify($scope.data.form, null, 2));
+            console.log('job toWho create', JSON.stringify($scope.data.form, null, 2));
             managerService.createJob($scope.data.form).then(function success(res) {
                 console.log('create job success!', res);
                 toaster.pop('success', 'Job Created!', '');

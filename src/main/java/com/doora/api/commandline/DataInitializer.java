@@ -1,10 +1,19 @@
 package com.doora.api.commandline;
 
 import com.doora.api.dto.UserDTO;
+import com.doora.api.model.Course;
+import com.doora.api.model.Tag;
+import com.doora.api.service.CourseService;
 import com.doora.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * initial data at application startup.
@@ -15,47 +24,65 @@ public class DataInitializer implements CommandLineRunner {
     @Autowired
     UserService userService;
 
+    @Autowired
+    CourseService courseService;
+
     @Override
     public void run(String... arg0) throws Exception {
 //        addUser();
-//        testJobs();
-//        mailService.sendMail("ruan.yuji@gmail.com", "hello", "123");
+//        addCourse();
     }
 
     private void addUser() {
         userService.createUser(new UserDTO("295046974@qq.com", "123", "frank", "ROLE_ADMIN"));
         userService.createUser(new UserDTO("ruan.yuji@gmail.com", "123", "yuji", "ROLE_USER"));
         userService.createUser(new UserDTO("test@gmail.com", "123", "test1", "ROLE_USER"));
-        userService.createUser(new UserDTO("review1@gmail.com", "123", "review1", "ROLE_REVIEWER"));
-        userService.createUser(new UserDTO("review2@gmail.com", "123", "review2", "ROLE_REVIEWER"));
     }
 
-    private void testJobs() {
-//        Job job1 = new Job("295046974@qq.com", "Java Dev", "full-time", "Google", "hello", JobStatus.OPEN);
-//        jobService.addJob(job1);
-////        Job job2 = new Job("Frank1", "Java Dev", "full-time", "Google", "hello", JobStatus.OPEN);
-////        jobService.addJob(job2);
-////        System.out.println("exist job: " + jobService.existJob(2L));
-////        Job job1 = jobService.findCourseByID(2L);
-////        System.out.println(job1);
-////        job1.setStatus(JobStatus.CLOSED);
-//        Reviewer reviewer1 = new Reviewer("review1@gmail.com", "review1", job1);
-//        Reviewer reviewer2 = new Reviewer("review2@gmail.com", "review2", job1);
-//        List<Reviewer> reviewerList = new ArrayList<>();
-//        reviewerList.add(reviewer1);
-//        reviewerList.add(reviewer2);
-//        job1.setReviewers(reviewerList);
-//        jobService.addJob(job1);
-//        System.out.println(job1);
-//        Application application = new Application("1", "1", "12xx@qq.com", "123123", ApplicationStatus.WAITING);
-//        jobService.addApplication(application);
-//        Review review = new Review("1", "1","1", "xiaomeimei", "hellllo", true);
-//        jobService.addReview(review);
+    private void addCourse() {
+        String csvFile = "./csv/all.csv";
+        String line = "";
+        String cvsSplitBy = ",";
 
-//        List<Job> jobList = jobService.findAllJob();
-//        System.out.println(jobList.size());
-//        Job j = jobService.findCourseByID(1L);
-//        System.out.println(j);
+//        List<Course> courseList = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+
+            while ((line = br.readLine()) != null) {
+
+                // use comma as separator
+                String[] courseArray = line.split(cvsSplitBy);
+
+                Course course = new Course();
+                course.setCode(courseArray[0].trim());
+                course.setName(courseArray[1].trim());
+                course.setFaculty(courseArray[2].trim());
+                course.setSchool(courseArray[3].trim());
+                course.setCareer(courseArray[4].trim());
+                course.setCredit("6");
+                course.setRequirements(courseArray[5].trim());
+                course.setDescription(courseArray[6].trim());
+                course.setLikes(0);
+                Tag tag1 = new Tag();
+                tag1.setName(course.getCode().replaceAll("\\d+",""));
+                Tag tag2 = new Tag();
+                tag2.setName(course.getCareer());
+                List<Tag> tags = new ArrayList<>();
+                tags.add(tag1);
+                tags.add(tag2);
+                course.setTags(tags);
+
+//                courseList.add(course);
+                System.out.println(course);
+                courseService.addCourse(course);
+
+                System.out.println("Course [code= " + courseArray[0] + " , name=" + courseArray[1] + "]");
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

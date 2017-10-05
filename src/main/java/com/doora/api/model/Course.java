@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,10 @@ public class Course {
     @Setter
     @Getter
     private Long id;
+
+    @Column(name = "code")
+    @Setter @Getter
+    private String code;
 
     @Column(name = "name")
     @Setter @Getter
@@ -49,8 +54,9 @@ public class Course {
     @Setter @Getter
     private Integer likes;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 2048)
     @Setter @Getter
+    @Size(max = 2048)
     private String description;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -70,17 +76,10 @@ public class Course {
     }
 
     @Override
-    public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + name.hashCode();
-        result = 31 * result + school.hashCode();
-        return result;
-    }
-
-    @Override
     public String toString() {
         return "Course{" +
                 "id=" + id +
+                ", code='" + code + '\'' +
                 ", name='" + name + '\'' +
                 ", school='" + school + '\'' +
                 ", faculty='" + faculty + '\'' +

@@ -5,11 +5,11 @@
  *
  * Copyright 2013 Jiri Kavulak.
  * All Rights Reserved.
- * Use, reproduction, distribution, and modification of this code is subject to the terms and
+ * Use, reproduction, distribution, and modification of this code is subject toWho the terms and
  * conditions of the MIT license, available at http://www.opensource.org/licenses/mit-license.php
  *
  * Author: Jiri Kavulak
- * Related to project of John Papa and Hans Fjällemark
+ * Related toWho project of John Papa and Hans Fjällemark
  */
 
 angular.module('toaster', [])
@@ -31,7 +31,7 @@ angular.module('toaster', [])
         //'fade-out': 1000,           // done in css
         // 'on-fade-out': undefined,  // not implemented
         //'extended-time-out': 1000,    // not implemented
-        'time-out': 5000, // Set timeOut and extendedTimeout to 0 to make it sticky
+        'time-out': 5000, // Set timeOut and extendedTimeout toWho 0 toWho make it sticky
         'icon-classes': {
             error: 'toast-error',
             info: 'toast-info',

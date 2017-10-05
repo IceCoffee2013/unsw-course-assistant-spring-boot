@@ -18,6 +18,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
 import java.io.IOException;
 
 public class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter {
@@ -36,6 +37,14 @@ public class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request,
                                                 HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
+//        BufferedReader br = request.getReader();
+//        String str, wholeStr = "";
+//        while((str = br.readLine()) != null){
+//            wholeStr += str;
+//        }
+//        System.out.println("{body} " +wholeStr);
+//        br.close();
+
         final UserDTO user = toUser(request);
         final UsernamePasswordAuthenticationToken loginToken = user.toAuthenticationToken();
         return getAuthenticationManager().authenticate(loginToken);

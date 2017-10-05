@@ -17,8 +17,7 @@ public class Reply {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Setter
-    @Getter
+    @Setter @Getter
     private Long id;
 
     @Column(name = "commentId")
@@ -33,9 +32,9 @@ public class Reply {
     @Setter @Getter
     private String replier;
 
-    @Column(name = "to")
+    @Column(name = "toWho")
     @Setter @Getter
-    private String to;
+    private String toWho;
 
     @Column(name = "replyTime")
     @Temporal(TemporalType.DATE)

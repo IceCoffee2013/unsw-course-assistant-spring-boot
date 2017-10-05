@@ -25,7 +25,8 @@ public class CourseController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> getAllCourses(@RequestParam(value = "searchText", required = false) String searchText) {
+    public ResponseEntity<?> getAllCourses(@RequestParam(value = "searchText", required = false) String searchText,
+                                            @RequestParam(value = "tag", required = false) String tag) {
         List<Course> courses = new ArrayList<>();
         if (searchText != null && !searchText.isEmpty()) {
             courses = courseService.findCourseByName(searchText);
@@ -48,13 +49,13 @@ public class CourseController {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<?> updateJob(@RequestBody Course course) {
+    public ResponseEntity<?> updateCourse(@RequestBody Course course) {
         courseService.updateCourse(course);
         return new ResponseEntity<>(course, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deletePostById(@PathVariable Long id) {
+    public ResponseEntity<?> deleteCourseById(@PathVariable Long id) {
         courseService.deleteCourse(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }

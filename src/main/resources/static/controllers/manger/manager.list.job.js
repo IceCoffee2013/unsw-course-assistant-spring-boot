@@ -24,7 +24,7 @@ foundITApp.controller('JobListCtrl', ['$scope', 'managerService',
 
         $scope.updateOpenJob = function (index) {
             $scope.stopEdit(index);
-            console.log('the job to update is', JSON.stringify($scope.data.openJobs[index], null, 2));
+            console.log('the job toWho update is', JSON.stringify($scope.data.openJobs[index], null, 2));
             managerService.upDateJob($scope.data.openJobs[index]).then(function success(res) {
                 console.log('updated job', res);
                 toaster.pop('success', 'Job Updated!', '');

@@ -3,19 +3,15 @@ package com.doora.api.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-/**
- * Created by langley on 12/9/17.
- */
+@Entity
+@Table(name = "question")
 public class Question {
 
-    /**
-     * comment id
-     */
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,4 +19,36 @@ public class Question {
     @Getter
     private Long id;
 
+    @Column(name = "title")
+    @Setter @Getter
+    private String title;
+
+    @Column(name = "description")
+    @Setter @Getter
+    private String description;
+
+    @Column(name = "author")
+    @Setter @Getter
+    private String author;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Setter @Getter
+    private List<Tag> tags = new ArrayList<>();
+
+    @Column(name = "postTime")
+    @Temporal(TemporalType.DATE)
+    @Setter @Getter
+    private Date postTime;
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", author='" + author + '\'' +
+                ", tags=" + tags +
+                ", postTime=" + postTime +
+                '}';
+    }
 }

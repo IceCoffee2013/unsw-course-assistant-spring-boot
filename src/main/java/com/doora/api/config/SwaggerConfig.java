@@ -22,15 +22,15 @@ public class SwaggerConfig {
             return new Docket(DocumentationType.SWAGGER_2)
                     .apiInfo(apiInfo())
                     .select()
-                    .apis(RequestHandlerSelectors.basePackage("com.seek.api"))
+                    .apis(RequestHandlerSelectors.basePackage("com.doora.api"))
                     .paths(PathSelectors.any())
                     .build();
         }
 
         private ApiInfo apiInfo() {
             return new ApiInfoBuilder()
-                    .title("COMP9322 Job Seek RESTful APIs")
-                    .description("COMP9322 ass2 Job Seek.")
+                    .title("COMP9323 Course Navigator RESTful APIs")
+                    .description("COMP9323 Course Navigator backend API")
                     .contact("Ruan.yuji@gmail.com")
                     .version("1.0.0")
                     .build();

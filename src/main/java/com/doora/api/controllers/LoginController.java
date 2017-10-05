@@ -1,5 +1,6 @@
 package com.doora.api.controllers;
 
+import com.doora.api.model.User;
 import com.doora.api.repository.UserRepository;
 import com.doora.api.dto.UserDTO;
 import com.doora.api.security.JwtTokenHandler;
@@ -36,10 +37,10 @@ public class LoginController {
 
     @ApiOperation(value = "create users", response = ResponseEntity.class)
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity create(@Valid @RequestBody UserDTO params) {
-        userService.createUser(params);
-        HttpHeaders headers = new HttpHeaders();
-        return new ResponseEntity(headers, HttpStatus.OK);
+    public ResponseEntity<?> create(@Valid @RequestBody UserDTO params) {
+        User newUser = userService.createUser(params);
+//        HttpHeaders headers = new HttpHeaders();
+        return new ResponseEntity(newUser, HttpStatus.OK);
     }
 
 }

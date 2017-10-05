@@ -13,8 +13,8 @@ public class Tag {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Setter
-    @Getter
+    @Setter @Getter
+    @JsonIgnore
     private Long id;
 
     @Column(name = "name")

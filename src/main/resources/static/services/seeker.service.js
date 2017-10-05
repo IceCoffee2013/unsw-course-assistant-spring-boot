@@ -43,13 +43,13 @@ foundITApp.service('seekerService', function ($q, httpService) {
                 console.log('seekerService checkMyApplication response', response);
                 var appInfos = response.data;
                 if (appInfos && appInfos.length > 0) {
-                    console.log('fire promise all to get job by jobID');
+                    console.log('fire promise all toWho get job by jobID');
                     self.getJobsByIds(appInfos).then(function (jobInfosResponse) {
                         console.log('job infos', jobInfosResponse);
                         for (var index = 0; index < appInfos.length; ++index) {
                             appInfos[index].jobTitle = jobInfosResponse[index].data.title;
                         }
-                        console.log('added title to application', appInfos);
+                        console.log('added title toWho application', appInfos);
                         d.resolve(appInfos);
                     }, function (err) {
                         d.reject(err);

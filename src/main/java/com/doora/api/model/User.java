@@ -23,6 +23,7 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Setter @Getter
+    @JsonIgnore
     private Long id;
 
     @NotNull
@@ -33,22 +34,14 @@ public class User implements UserDetails {
 
     @NotNull
     @Column(name = "password", length = 70)
+    @Setter @Getter
+    @JsonIgnore
     private String password;
 
     @NotNull
     @Size(min = 4, max = 30)
     @Setter @Getter
     private String nickname;
-
-    @JsonIgnore
-    public String getPassword() {
-        return password;
-    }
-
-    @JsonProperty
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     @Override
     @JsonIgnore
@@ -92,6 +85,7 @@ public class User implements UserDetails {
 //            joinColumns        = {@JoinColumn(nickname = "user_id", referencedColumnName = "id")},
 //            inverseJoinColumns = {@JoinColumn(nickname = "role_id",  referencedColumnName = "id")}
 //    )
+    @Setter @Getter
     private String role;
 
     @Override
@@ -111,14 +105,6 @@ public class User implements UserDetails {
                     && Objects.equal(isEnabled(), other.isEnabled());
         }
         return false;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     @Override

@@ -1,14 +1,11 @@
 package com.doora.api.service;
 
-import com.doora.api.dto.ApplicationDTO;
-import com.doora.api.dto.ReviewDTO;
-import com.doora.api.model.*;
-import com.doora.api.repository.*;
+import com.doora.api.model.Course;
+import com.doora.api.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

@@ -18,13 +18,13 @@ public final class UserDTO {
     private final String role; // "ROLE_USER" "ROLE_ADMIN"
 
     private final String email;
-    @Size(min = 8, max = 100)
+    @Size(min = 3, max = 100)
     private final String password;
     private final String name;
 
-    public UserDTO(@JsonProperty("email") String email,
+    public UserDTO(@JsonProperty("username") String email,
                    @JsonProperty("password") String password,
-                   @JsonProperty("name") String name,
+                   @JsonProperty("nickname") String name,
                    @JsonProperty("role") String role) {
         this.email = email;
         this.password = password;

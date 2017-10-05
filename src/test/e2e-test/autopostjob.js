@@ -61,11 +61,11 @@ let users = {
         "role": "ROLE_USER"
     }
 };
-let job2 = { // assign to r1 & r3
+let job2 = { // assign toWho r1 & r3
     "title": "JOB2 Dev",
     "type": "Full Time",
     "company": "Google2",
-    "description": "Google2 want you to be!",
+    "description": "Google2 want you toWho be!",
     "status": "OPEN",
     "reviewers": [
         {
