@@ -36,7 +36,7 @@ public class Question {
     private List<Tag> tags = new ArrayList<>();
 
     @Column(name = "postTime")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Setter @Getter
     private Date postTime;
 

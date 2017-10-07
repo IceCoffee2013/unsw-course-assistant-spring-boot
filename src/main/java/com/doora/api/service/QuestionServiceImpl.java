@@ -20,7 +20,6 @@ public class QuestionServiceImpl implements QuestionService{
     private QuestionRepository questionRepository;
     private AnswerRepository answerRepository;
 
-
     @Autowired
     public QuestionServiceImpl(QuestionRepository questionRepository, AnswerRepository answerRepository) {
         this.questionRepository = questionRepository;
@@ -28,13 +27,13 @@ public class QuestionServiceImpl implements QuestionService{
     }
 
     @Override
-    public void addQuestion(Question question) {
-        questionRepository.save(question);
+    public Question addQuestion(Question question) {
+        return questionRepository.save(question);
     }
 
     @Override
-    public void updateQuestion(Question question) {
-        questionRepository.save(question);
+    public Question updateQuestion(Question question) {
+        return questionRepository.save(question);
     }
 
     @Override

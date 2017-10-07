@@ -29,7 +29,7 @@ public class Answer {
     private String content;
 
     @Column(name = "postTime")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Setter @Getter
     private Date postTime;
 
