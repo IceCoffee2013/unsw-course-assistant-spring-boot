@@ -59,6 +59,9 @@ public class TokenAuthenticationService {
     public Authentication generateAuthenticationFromRequest(HttpServletRequest request) {
         final String token = request.getHeader(AUTH_HEADER_NAME);
         if (token == null || token.isEmpty()) return null;
+
+        System.out.println("filter auth" + token); // TODO
+
         return jwtTokenHandler
                 .parseUserFromToken(token)
                 .map(UserAuthentication::new)

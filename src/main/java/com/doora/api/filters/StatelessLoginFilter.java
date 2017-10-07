@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Enumeration;
 
 public class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter {
 
@@ -37,6 +38,14 @@ public class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request,
                                                 HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
+
+        Enumeration<String> headers = request.getHeaderNames();
+        while (headers.hasMoreElements()) {
+            String key = headers.nextElement();
+            System.out.println(key + " || " + request.getHeader(key));
+        }
+        System.out.println();
+
 //        BufferedReader br = request.getReader();
 //        String str, wholeStr = "";
 //        while((str = br.readLine()) != null){

@@ -10,6 +10,8 @@ import java.util.List;
  */
 public interface CourseRepository extends JpaRepository<Course, Long> {
 
+    List<Course> findByCodeContaining(String code);
+
     List<Course> findByName(String name);
 
     List<Course> findByNameContaining(String name);

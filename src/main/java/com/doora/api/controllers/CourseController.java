@@ -7,7 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 /**
@@ -26,7 +28,15 @@ public class CourseController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> getAllCourses(@RequestParam(value = "searchText", required = false) String searchText,
-                                            @RequestParam(value = "tag", required = false) String tag) {
+                                           @RequestParam(value = "tag", required = false) String tag,
+                                           HttpServletRequest httpServletRequest) {
+
+        Enumeration<String> headers = httpServletRequest.getHeaderNames();
+        while (headers.hasMoreElements()) {
+            String key = headers.nextElement();
+            System.out.println(key + " | " + httpServletRequest.getHeader(key));
+        }
+
         List<Course> courses = new ArrayList<>();
         if (searchText != null && !searchText.isEmpty()) {
             courses = courseService.findCourseByName(searchText);
@@ -58,6 +68,12 @@ public class CourseController {
     public ResponseEntity<?> deleteCourseById(@PathVariable Long id) {
         courseService.deleteCourse(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/related/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> relatedCourseById(@PathVariable Long id) {
+        List<Course> relatedCourse = courseService.findRelatedCourse(id);
+        return new ResponseEntity<>(relatedCourse, HttpStatus.OK);
     }
 
 }

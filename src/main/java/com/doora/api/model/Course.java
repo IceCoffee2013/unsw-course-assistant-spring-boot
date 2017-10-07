@@ -18,8 +18,7 @@ public class Course {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Setter
-    @Getter
+    @Setter @Getter
     private Long id;
 
     @Column(name = "code")

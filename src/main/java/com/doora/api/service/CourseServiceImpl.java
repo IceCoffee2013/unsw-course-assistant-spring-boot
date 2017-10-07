@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @Transactional
 public class CourseServiceImpl implements CourseService {
+
+    private final static int RELATED_COURSE_COUNT = 10;
 
     private CourseRepository courseRepository;
 
@@ -47,5 +50,34 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public List<Course> findAllCourse() {
         return this.courseRepository.findAll();
+    }
+
+    @Override
+    public List<Course> findRelatedCourse(Long id) {
+        List<Course> relatedCourses = new ArrayList<>();
+        Course target = findCourseByID(id);
+        if (target == null) {
+            return relatedCourses;
+        }
+
+        String codePrefix = target.getCode().replaceAll("\\d+","");
+        if (codePrefix == null) {
+            return relatedCourses;
+        }
+
+        int count = 0;
+        for (Course c : this.courseRepository.findByCodeContaining(codePrefix)) {
+            if (relatedCourses.size() >= RELATED_COURSE_COUNT) {
+                break;
+            }
+            count++;
+            if (c.getId().equals(target.getId())) {
+                continue;
+            }
+            relatedCourses.add(c);
+        }
+        System.out.println("target: " + target.getCode() + " relatedCourses:" + relatedCourses.size());
+
+        return relatedCourses;
     }
 }

@@ -19,4 +19,6 @@ public interface CourseService {
 
     List<Course> findAllCourse();
 
+    List<Course> findRelatedCourse(Long id);
+
 }
