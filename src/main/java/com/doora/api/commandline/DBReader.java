@@ -1,49 +1,27 @@
 package com.doora.api.commandline;
 
-import com.doora.api.dto.UserDTO;
 import com.doora.api.model.Course;
 import com.doora.api.model.Tag;
-import com.doora.api.service.CourseService;
-import com.doora.api.service.UserService;
 import com.opencsv.CSVReader;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * initial data at application startup.
+ * Created by langley on 4/10/17.
  */
-@Component
-public class DataInitializer implements CommandLineRunner {
+public class DBReader {
 
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    CourseService courseService;
-
-    @Override
-    public void run(String... arg0) throws Exception {
-//        addUser();
-//        addCourse();
-    }
-
-    private void addUser() {
-        userService.createUser(new UserDTO("295046974@qq.com", "123", "frank", "ROLE_ADMIN", "assets/images/face-1.jpg"));
-        userService.createUser(new UserDTO("ruan.yuji@gmail.com", "123", "yuji", "ROLE_USER", "assets/images/face-2.jpg"));
-        userService.createUser(new UserDTO("test@gmail.com", "123", "test1", "ROLE_USER", "assets/images/face-3.jpg"));
-    }
-
-    private void addCourse() {
+    public static void main(String[] args) {
         try {
             String csvFile = "./csv/all.csv";
             FileInputStream fis = new FileInputStream(csvFile);
             InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
             CSVReader reader = new CSVReader(isr);
+
+            List<Course> courseList = new ArrayList<>();
 
             for (String[] row; (row = reader.readNext()) != null; ) {
 
@@ -67,8 +45,9 @@ public class DataInitializer implements CommandLineRunner {
                 course.setTags(tags);
 
                 System.out.println(course);
+                System.out.println();
 
-                courseService.addCourse(course);
+                courseList.add(course);
             }
 
             reader.close();
@@ -76,8 +55,10 @@ public class DataInitializer implements CommandLineRunner {
             fis.close();
 
         } catch (Exception e) {
-            System.err.println("[error] " + e.getMessage());
+            System.err.println(e.getStackTrace());
         }
+
+
     }
 
 }

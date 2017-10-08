@@ -53,9 +53,8 @@ public class Course {
     @Setter @Getter
     private Integer likes;
 
-    @Column(name = "description", length = 2048)
+    @Column(name = "description", length = 20000)
     @Setter @Getter
-    @Size(max = 2048)
     private String description;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
