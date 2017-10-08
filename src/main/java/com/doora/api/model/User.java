@@ -43,6 +43,9 @@ public class User implements UserDetails {
     @Setter @Getter
     private String nickname;
 
+    @Setter @Getter
+    private String avatar;
+
     @Override
     @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {

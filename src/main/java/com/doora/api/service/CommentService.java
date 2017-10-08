@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface CommentService {
 
-    void addComment(Comment comment);
+    Comment addComment(Comment comment);
 
-    void updateComment(Comment comment);
+    Comment updateComment(Comment comment);
 
     void deleteComment(Long id);
 

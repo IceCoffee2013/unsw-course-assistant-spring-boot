@@ -34,9 +34,9 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private void addUser() {
-        userService.createUser(new UserDTO("295046974@qq.com", "123", "frank", "ROLE_ADMIN"));
-        userService.createUser(new UserDTO("ruan.yuji@gmail.com", "123", "yuji", "ROLE_USER"));
-        userService.createUser(new UserDTO("test@gmail.com", "123", "test1", "ROLE_USER"));
+        userService.createUser(new UserDTO("295046974@qq.com", "123", "frank", "ROLE_ADMIN", "assets/images/face-1.jpg"));
+        userService.createUser(new UserDTO("ruan.yuji@gmail.com", "123", "yuji", "ROLE_USER", "assets/images/face-2.jpg"));
+        userService.createUser(new UserDTO("test@gmail.com", "123", "test1", "ROLE_USER", "assets/images/face-3.jpg"));
     }
 
     private void addCourse() {

@@ -21,9 +21,9 @@ public interface QuestionService {
 
     List<Question> findAllQuestion();
 
-    void addAnswer(Answer answer);
+    Answer addAnswer(Answer answer);
 
-    void updateAnswer(Answer answer);
+    Answer updateAnswer(Answer answer);
 
     void deleteAnswer(Long id);
 

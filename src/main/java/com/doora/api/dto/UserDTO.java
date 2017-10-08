@@ -21,15 +21,18 @@ public final class UserDTO {
     @Size(min = 3, max = 100)
     private final String password;
     private final String name;
+    private final String avatar;
 
     public UserDTO(@JsonProperty("username") String email,
                    @JsonProperty("password") String password,
                    @JsonProperty("nickname") String name,
-                   @JsonProperty("role") String role) {
+                   @JsonProperty("role") String role,
+                   @JsonProperty("avatar") String avatar) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.role = role;
+        this.avatar = avatar;
     }
 
     public Optional<String> getEmail() {
@@ -52,6 +55,11 @@ public final class UserDTO {
         User user = new User();
         user.setUsername(email);
         user.setRole("");
+        if (this.avatar != null) {
+            user.setAvatar(this.avatar);
+        } else {
+            user.setAvatar("");
+        }
         user.setPassword(new BCryptPasswordEncoder().encode(password));
         user.setNickname(name);
         return user;

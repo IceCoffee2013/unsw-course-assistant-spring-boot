@@ -28,13 +28,13 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void addComment(Comment comment) {
-        commentRepository.save(comment);
+    public Comment addComment(Comment comment) {
+        return commentRepository.save(comment);
     }
 
     @Override
-    public void updateComment(Comment comment) {
-        commentRepository.save(comment);
+    public Comment updateComment(Comment comment) {
+        return commentRepository.save(comment);
     }
 
     @Override

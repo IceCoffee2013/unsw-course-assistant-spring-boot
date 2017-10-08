@@ -57,13 +57,13 @@ public class QuestionServiceImpl implements QuestionService{
     }
 
     @Override
-    public void addAnswer(Answer answer) {
-        answerRepository.save(answer);
+    public Answer addAnswer(Answer answer) {
+        return answerRepository.save(answer);
     }
 
     @Override
-    public void updateAnswer(Answer answer) {
-        answerRepository.save(answer);
+    public Answer updateAnswer(Answer answer) {
+        return answerRepository.save(answer);
     }
 
     @Override
