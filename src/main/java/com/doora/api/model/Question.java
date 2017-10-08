@@ -23,7 +23,7 @@ public class Question {
     @Setter @Getter
     private String title;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 200000)
     @Setter @Getter
     private String description;
 

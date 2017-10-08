@@ -26,7 +26,7 @@ public class Comment {
     @Setter @Getter
     private String postId;
 
-    @Column(name = "content")
+    @Column(name = "content", length = 2048)
     @Setter @Getter
     private String content;
 

@@ -10,8 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 
 /**
@@ -31,7 +33,9 @@ public class QuestionController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> getAllQuestion(@RequestParam(value = "searchText", required = false) String searchText) {
+    public ResponseEntity<?> getAllQuestion(@RequestParam(value = "searchText", required = false) String searchText,
+                                            HttpServletRequest httpServletRequest) {
+
         List<Question> questions = new ArrayList<>();
         if (searchText != null && !searchText.isEmpty()) {
             System.out.println("query question: " + searchText);
@@ -64,7 +68,7 @@ public class QuestionController {
         User user = userService.findUserByUsername(username).get();
         question.setAuthor(user.getNickname());
         question.setPostTime(new Date());
-        Question newQuestion = questionService.addQuestion(question);
+        Question newQuestion = questionService.updateQuestion(question);
         return new ResponseEntity<>(newQuestion, HttpStatus.OK);
     }
 

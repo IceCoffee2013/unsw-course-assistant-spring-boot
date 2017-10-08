@@ -24,7 +24,7 @@ public class Reply {
     @Setter @Getter
     private String commentId;
 
-    @Column(name = "replyContent")
+    @Column(name = "replyContent", length = 2048)
     @Setter @Getter
     private String replyContent;
 
