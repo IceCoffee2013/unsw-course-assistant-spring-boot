@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface CourseService {
 
-    void addCourse(Course course);
+    Course addCourse(Course course);
 
-    void updateCourse(Course course);
+    Course updateCourse(Course course);
 
     void deleteCourse(Long id);
 

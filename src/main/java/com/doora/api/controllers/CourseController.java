@@ -54,14 +54,14 @@ public class CourseController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> addNewCourse(@RequestBody Course course) {
-        courseService.addCourse(course);
-        return new ResponseEntity<>(course, HttpStatus.CREATED);
+        Course newCourse = courseService.addCourse(course);
+        return new ResponseEntity<>(newCourse, HttpStatus.CREATED);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<?> updateCourse(@RequestBody Course course) {
-        courseService.updateCourse(course);
-        return new ResponseEntity<>(course, HttpStatus.OK);
+        Course newCourse = courseService.updateCourse(course);
+        return new ResponseEntity<>(newCourse, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

@@ -23,13 +23,13 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public void addCourse(Course course) {
-        this.courseRepository.save(course);
+    public Course addCourse(Course course) {
+        return this.courseRepository.save(course);
     }
 
     @Override
-    public void updateCourse(Course course) {
-        this.courseRepository.save(course);
+    public Course updateCourse(Course course) {
+        return this.courseRepository.save(course);
     }
 
     @Override
