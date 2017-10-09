@@ -3,8 +3,18 @@ let users = {
     r1: { //register reviewer1
         "email": "reviewer_1@gmail.com",
         "password": "12345678",
-        "name": "Reviewer 1",
-        "role": "ROLE_REVIEWER"
+        "title": "ggjh Dev",
+        "description": "hello",
+        "author": "alice",
+        "tags": [
+            {
+                "name" : "comp"
+            },
+            {
+                "name" : "cse"
+            }
+        ]
+
     },
     r2: { //register reviewer2
         "email": "reviewer_2@gmail.com",
