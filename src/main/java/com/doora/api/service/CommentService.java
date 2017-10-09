@@ -21,6 +21,8 @@ public interface CommentService {
 
     List<Comment> findAllComment();
 
+    Reply findReplyById(Long id);
+
     void addReply(Reply reply);
 
     void deleteReply(Long id);

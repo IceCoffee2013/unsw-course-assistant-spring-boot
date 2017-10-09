@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -80,7 +81,18 @@ public class CommentController {
 
     @RequestMapping(value = "/reply/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteReplyById(@PathVariable Long id) {
-        commentService.deleteReply(id);
+        Reply reply = this.commentService.findReplyById(id);
+        Comment comment = this.commentService.findCommentById(Long.parseLong(reply.getCommentId()));
+        Iterator<Reply> iterator = comment.getReplies().iterator();
+
+        while (iterator.hasNext()) {
+            Reply tmp = iterator.next();
+            if (tmp.getId() == id) {
+                iterator.remove();
+                break;
+            }
+        }
+        commentService.updateComment(comment);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 

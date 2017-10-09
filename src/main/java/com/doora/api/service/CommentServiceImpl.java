@@ -53,6 +53,11 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public Reply findReplyById(Long id) {
+        return replyRepository.findOne(id);
+    }
+
+    @Override
     public void addReply(Reply reply) {
         replyRepository.save(reply);
     }
